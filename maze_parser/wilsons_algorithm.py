@@ -82,6 +82,14 @@ class wilsons_algorithm(sorting_algorithm):
             else:
                 A.append((x, y, M[y][x], dual_parse(M[y][x], M[y][x - 1])))
             self.make_path(A, M, x - 1, y, x_start, y_start, x_end, y_end)
+        elif M[y][x] == 5:
+            A.append((x, y, M[y][x], 's'))
+        elif M[y][x] == 6:
+            A.append((x, y, M[y][x], 'j'))
+        elif M[y][x] == 7:
+            A.append((x, y, M[y][x], 'i'))
+        elif M[y][x] == 8:
+            A.append((x, y, M[y][x], 'h'))
 
     def print_path(self):
         for i in range(len(self.path)):

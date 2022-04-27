@@ -24,7 +24,7 @@ def dual_parse(parent, current):
         if current == 2:
             return "g"
         if current == 3:
-            return "a"
+            return "f"
         if current == 4:
             return "b"
 
