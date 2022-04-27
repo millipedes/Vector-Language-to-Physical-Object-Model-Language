@@ -33,8 +33,12 @@ def dual_parse(parent, current, child):
             return "g"
         elif current == 3:
             return "f"
-        elif current == 4:
+        elif current == 4 and child == 4:
             return "b"
+        elif current == 4 and child == 1:
+            return "g"
+        elif current == 4 and child == 3:
+            return "f"
 
 # def get_mat_parent(M, x, y, x_start,  y_start):
 #     x_prev = 0
