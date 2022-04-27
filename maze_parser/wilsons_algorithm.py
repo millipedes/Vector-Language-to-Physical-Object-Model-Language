@@ -1,8 +1,7 @@
 import random as rand
 
 from .sorting_algorithm import sorting_algorithm
-from .maze_parser import dual_parse
-from .maze_parser import get_mat_child
+from .maze_parser import parse_path
 
 class wilsons_algorithm(sorting_algorithm):
     def __init__(self, *args, **kwargs):
@@ -56,45 +55,54 @@ class wilsons_algorithm(sorting_algorithm):
             M[y_curr][x_curr] = 8
         P = [] # Path
         self.make_path(P, M, self.ix, self.iy, self.ix, self.iy, x_end, y_end)
-        return P
+        return parse_path(P, self.h, self.w)
 
     def make_path(self, A, M, x, y, x_start, y_start, x_end, y_end):
+        A.append((x, y, M[y][x]))
         if M[y][x] == 1:
-            if (x_start == x and y_start == y) or (x_end == x and y_end == y):
-                A.append((x, y, M[y][x], 's'))
-            else:
-                A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
-                    get_mat_child(M, x, y))))
             self.make_path(A, M, x, y - 1, x_start, y_start, x_end, y_end)
         elif M[y][x] == 2:
-            if (x_start == x and y_start == y) or (x_end == x and y_end == y):
-                A.append((x, y, M[y][x], 'j'))
-            else:
-                A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
-                    get_mat_child(M, x, y))))
             self.make_path(A, M, x + 1, y, x_start, y_start, x_end, y_end)
         elif M[y][x] == 3:
-            if (x_start == x and y_start == y) or (x_end == x and y_end == y):
-                A.append((x, y, M[y][x], 'i'))
-            else:
-                A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
-                    get_mat_child(M, x, y))))
             self.make_path(A, M, x, y + 1, x_start, y_start, x_end, y_end)
         elif M[y][x] == 4:
-            if (x_start == x and y_start == y) or (x_end == x and y_end == y):
-                A.append((x, y, M[y][x], 'h'))
-            else:
-                A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
-                    get_mat_child(M, x, y))))
             self.make_path(A, M, x - 1, y, x_start, y_start, x_end, y_end)
-        elif M[y][x] == 5:
-            A.append((x, y, M[y][x], 'i'))
-        elif M[y][x] == 6:
-            A.append((x, y, M[y][x], 'h'))
-        elif M[y][x] == 7:
-            A.append((x, y, M[y][x], 's'))
-        elif M[y][x] == 8:
-            A.append((x, y, M[y][x], 'j'))
+        # if M[y][x] == 1:
+        #     if (x_start == x and y_start == y) or (x_end == x and y_end == y):
+        #         A.append((x, y, M[y][x], 's'))
+        #     else:
+        #         A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
+        #             get_mat_child(M, x, y))))
+        #     self.make_path(A, M, x, y - 1, x_start, y_start, x_end, y_end)
+        # elif M[y][x] == 2:
+        #     if (x_start == x and y_start == y) or (x_end == x and y_end == y):
+        #         A.append((x, y, M[y][x], 'j'))
+        #     else:
+        #         A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
+        #             get_mat_child(M, x, y))))
+        #     self.make_path(A, M, x + 1, y, x_start, y_start, x_end, y_end)
+        # elif M[y][x] == 3:
+        #     if (x_start == x and y_start == y) or (x_end == x and y_end == y):
+        #         A.append((x, y, M[y][x], 'i'))
+        #     else:
+        #         A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
+        #             get_mat_child(M, x, y))))
+        #     self.make_path(A, M, x, y + 1, x_start, y_start, x_end, y_end)
+        # elif M[y][x] == 4:
+        #     if (x_start == x and y_start == y) or (x_end == x and y_end == y):
+        #         A.append((x, y, M[y][x], 'h'))
+        #     else:
+        #         A.append((x, y, M[y][x], dual_parse(A[-1][2], M[y][x],
+        #             get_mat_child(M, x, y))))
+        #     self.make_path(A, M, x - 1, y, x_start, y_start, x_end, y_end)
+        # elif M[y][x] == 5:
+        #     A.append((x, y, M[y][x], 'i'))
+        # elif M[y][x] == 6:
+        #     A.append((x, y, M[y][x], 'h'))
+        # elif M[y][x] == 7:
+        #     A.append((x, y, M[y][x], 's'))
+        # elif M[y][x] == 8:
+        #     A.append((x, y, M[y][x], 'j'))
 
     def print_path(self):
         for i in range(len(self.path)):
