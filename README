@@ -24,7 +24,8 @@ be down as its direction implies the next/previous direction, i.e. why parser
 and surrounding universe is necessary for tackling this problem).
 
 N.B. 3) The only way this even remotely works is because of the ***AXIOM:
-not(edges) === directional vector***
+not(edges) === directional vector*** This is because all paths are context free
+grammars
 
 Accepted Grammar BNF-Like Notation:
 -> + \/ + "EXP"             => -> + ({1, 1, 0, 0}, "d") + "EXP"
