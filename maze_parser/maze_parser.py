@@ -1,4 +1,4 @@
-def dual_path_parse(parent, current):
+def dual_parse(parent, current):
     if   parent == 1:
         if current == 1:
             return "b"
@@ -26,7 +26,7 @@ def dual_path_parse(parent, current):
         if current == 3:
             return "a"
         if current == 4:
-            return "c"
+            return "b"
 
 def tri_path_parse(parent, current, child):
     pass
