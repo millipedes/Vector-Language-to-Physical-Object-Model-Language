@@ -1,6 +1,6 @@
 class room_data:
     def __init__(self):
-        self.__edges = [1 for _ in range(4)]
+        self.__edges = [0 for _ in range(4)]
     def get_edges(self):
         return self.__edges
     def set_edges(self, edges):
@@ -13,11 +13,19 @@ class room_data:
         self.__edges[2] = 0;
     def turn_off_left(self):
         self.__edges[3] = 0;
-    def turn_on_up(self):
+    def turn_up_parent(self):
+        self.__edges[0] = 2;
+    def turn_right_parent(self):
+        self.__edges[1] = 2;
+    def turn_down_parent(self):
+        self.__edges[2] = 2;
+    def turn_left_parent(self):
+        self.__edges[3] = 2;
+    def turn_up_child(self):
         self.__edges[0] = 1;
-    def turn_on_right(self):
+    def turn_right_child(self):
         self.__edges[1] = 1;
-    def turn_on_down(self):
+    def turn_down_child(self):
         self.__edges[2] = 1;
-    def turn_on_left(self):
+    def turn_left_child(self):
         self.__edges[3] = 1;

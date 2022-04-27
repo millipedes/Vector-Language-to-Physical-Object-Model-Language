@@ -27,6 +27,14 @@ N.B. 3) The only way this even remotely works is because of the ***AXIOM:
 not(edges) === directional vector*** This is because all paths are context free
 grammars
 
+N.B. 4) Below 1 => wall 0 => no wall, but due to encoding needs of the project,
+in the actual code it is implemented that edges correspond to:
+  - 0 Wall
+  - 1 Child Direction Opening
+  - 2 Parent Direction Opening
+
+N.B. 5) Grammar is Right Associative i.e. edges can be overwritten.
+
 Accepted Grammar BNF-Like Notation:
 -> + \/ + "EXP"             => -> + ({1, 1, 0, 0}, "d") + "EXP"
 -> + -> + "EXP"             => -> + ->                  + "EXP"

@@ -2,6 +2,7 @@ import random as rand
 
 from .sorting_algorithm import sorting_algorithm
 from room.room import room
+from room.room import room_data
 
 class wilsons_algorithm(sorting_algorithm):
     def __init__(self, *args, **kwargs):
@@ -21,8 +22,28 @@ class wilsons_algorithm(sorting_algorithm):
         M = self.preleminary_matrix_gen()
         wilsons_algorithm(head_room, M, 0, 0)
 
-    def wilsons_algorithm(self, room, M, x, y):
-        if M[y][x] == 
+    def wilsons_algorithm(self, current, parent, M, x, y):
+        if current.room_data == None:
+            if   M[y][x] == 1:
+                current.get_room_data().turn_up_current()
+                current.set_up(Room())
+                current.get_up().get_room_data() = room_data()
+                wilsons_algorithm(current.get_up(), M, x, y - 1)
+            elif M[y][x] == 2:
+                current.get_room_data().turn_right_current()
+                current.set_right(Room())
+                current.get_right().get_room_data() = room_data()
+                wilsons_algorithm(current.get_right(), M, x + 1, y)
+            elif M[y][x] == 3:
+                current.get_room_data().turn_down_current()
+                current.set_down(Room())
+                current.get_down().get_room_data() = room_data()
+                wilsons_algorithm(current.get_down(), M, x, y + 1)
+            elif M[y][x] == 4:
+                current.get_room_data().turn_left_current()
+                current.set_left(Room())
+                current.get_left().get_room_data() = room_data()
+                wilsons_algorithm(current.get_left(), M, x - 1, y)
 
     def preleminary_matrix_gen(self):
         M = [[0 for _ in range(self.w)] for _ in range(self.h)]
