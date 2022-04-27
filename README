@@ -1,0 +1,49 @@
+================================================================================
+Preconditions, Postconditions, & Assumptions
+================================================================================
+Preconditions:
+  Data:
+    WIDTH              : int
+    HEIGHT             : int
+    ALGORITHMINTERFACE : <-
+  Logical:
+    1) Existance of a logically ordering maze generation algorithm
+    2) 
+
+
+================================================================================
+This is a compiler?!?
+================================================================================
+N.B. 1) BNF Context Free Grammar below given is in terms of tuples with the
+following pattern:
+({edge_switches}, "asset_name")
+
+N.B. 2) All rooms always retain direction as rooms are defined to be vectors
+(i.e. this implies the property of being a unique block such as "f" will still
+be down as its direction implies the next/previous direction, i.e. why parser
+and surrounding universe is necessary for tackling this problem).
+
+Accepted Grammar BNF-Like Notation:
+-> + \/ + "EXP"     => -> + ({1, 1, 0, 0}, "d") + "EXP"
+-> + -> + "EXP"     => -> + ->                  + "EXP"
+-> + /\ + "EXP"     => -> + ({0, 1, 1, 0}, "c") + "EXP"
+<- + \/ + "EXP"     => <- + ({1, 0, 0, 1}, "f") + "EXP"
+<- + <- + "EXP"     => <- + <-                  + "EXP"
+<- + /\ + "EXP"     => <- + ({0, 0, 1, 1}, "g") + "EXP"
+\/ + \/ + "EXP"     => \/ + \/                  + "EXP"
+\/ + <- + "EXP"     => \/ + ({0, 1, 1, 0}, "c") + "EXP"
+\/ + -> + "EXP"     => \/ + ({0, 0, 1, 1}, "g") + "EXP"
+/\ + /\ + "EXP"     => /\ + /\                  + "EXP"
+/\ + <- + "EXP"     => /\ + ({1, 1, 0, 0}, "d") + "EXP"
+/\ + -> + "EXP"     => /\ + ({1, 0, 0, 1}, "f") + "EXP"
+->                  => ({1, 0, 1, 0}, "a")
+<-                  => ({1, 0, 1, 0}, "a")
+\/                  => ({0, 1, 0, 1}, "b")
+/\                  => ({0, 1, 0, 1}, "b")
+({1, 0, 1, 0}, "a") => ({1, 0, 1, 0}, "a")
+({0, 1, 0, 1}, "b") => ({0, 1, 0, 1}, "b")
+({0, 1, 1, 0}, "c") => ({0, 1, 1, 0}, "c")
+({1, 1, 0, 0}, "d") => ({1, 1, 0, 0}, "d")
+({1, 0, 0, 1}, "f") => ({1, 0, 0, 1}, "f")
+({0, 0, 1, 1}, "g") => ({0, 0, 1, 1}, "g")
+"EXP"               => (->, <-, /\, \/)*

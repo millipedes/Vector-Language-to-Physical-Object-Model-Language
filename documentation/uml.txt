@@ -1,0 +1,43 @@
+@startuml
+
+package "Analogous Path Compiler" {
+  class main {
+  }
+  package maze_pasrser {
+    class maze_pasrser {
+    }
+
+    package room {
+      class Room {
+         {field} # __room_data : room_data
+         {field} # __left : Room
+         {field} # __right : Room
+         {field} # __up : Room
+         {field} # __down : Room
+        {method} + room_data get_room_data()
+        {method} + Room get_left()
+        {method} + Room get_right()
+        {method} + Room get_up()
+        {method} + Room get_down()
+        {method} + void set_edges(room_data)
+        {method} + void set_left(Room 
+        {method} + void set_right(Room)
+        {method} + void set_up(Room)
+        {method} + void set_down(Room)
+        {method} + void set_room_data(room_data)
+      }
+      class room_data {
+         {field} # __edges
+        {method} + int[] get_edges()
+        {method} + void set_edges(int[])
+      }
+
+      note left of room_data : flags for edges:\n1: up\n2: right\n3: down\n \
+4: left\nSet to 1 by default.
+    }
+  }
+}
+
+Room "1" o--> "1" room_data
+
+@enduml
