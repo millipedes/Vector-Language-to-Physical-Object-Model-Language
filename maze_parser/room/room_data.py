@@ -29,3 +29,8 @@ class room_data:
         self.__edges[2] = 1;
     def turn_left_child(self):
         self.__edges[3] = 1;
+    def edges_off(self):
+        for i in range(4):
+            if self.__edges[i] != 0:
+                return 0
+        return 1

@@ -1,6 +1,7 @@
 import random as rand
 
 from .sorting_algorithm import sorting_algorithm
+from .maze_parser import dual_parser
 from room.room import room
 from room.room import room_data
 
@@ -19,31 +20,34 @@ class wilsons_algorithm(sorting_algorithm):
 
     def generate_dungeon(self):
         head_room = Room()
+        none_room = None
         M = self.preleminary_matrix_gen()
-        wilsons_algorithm(head_room, M, 0, 0)
+        wilsons_algorithm(head_room, none_room, M, 0, 0)
 
     def wilsons_algorithm(self, current, parent, M, x, y):
         if current.room_data == None:
+            current.room_data = room_data()
             if   M[y][x] == 1:
-                current.get_room_data().turn_up_current()
-                current.set_up(Room())
-                current.get_up().get_room_data() = room_data()
+                current.get_room_data().turn_up_child()
+                current.set_up(Room(init_data=True))
                 wilsons_algorithm(current.get_up(), M, x, y - 1)
             elif M[y][x] == 2:
-                current.get_room_data().turn_right_current()
-                current.set_right(Room())
-                current.get_right().get_room_data() = room_data()
+                current.get_room_data().turn_right_child()
+                current.set_right(Room(init_data=True))
                 wilsons_algorithm(current.get_right(), M, x + 1, y)
             elif M[y][x] == 3:
-                current.get_room_data().turn_down_current()
-                current.set_down(Room())
-                current.get_down().get_room_data() = room_data()
-                wilsons_algorithm(current.get_down(), M, x, y + 1)
+                current.get_room_data().turn_down_child()
+                current.set_down(Room(init_data=True))
+                wilsons_algorithm(current.get_down(), M, x - 1, y)
             elif M[y][x] == 4:
-                current.get_room_data().turn_left_current()
-                current.set_left(Room())
-                current.get_left().get_room_data() = room_data()
-                wilsons_algorithm(current.get_left(), M, x - 1, y)
+                current.get_room_data().turn_left_child()
+                current.set_left(Room(init_data=True))
+                wilsons_algorithm(current.get_left(), M, x, y + 1)
+        elif current.get_room_data().init_block():
+            if   M[y][x] == 1:
+            elif M[y][x] == 2:
+            elif M[y][x] == 3:
+            elif M[y][x] == 4:
 
     def preleminary_matrix_gen(self):
         M = [[0 for _ in range(self.w)] for _ in range(self.h)]
@@ -79,11 +83,7 @@ class wilsons_algorithm(sorting_algorithm):
             M[y_curr][x_curr] = 8
         P = [] # Path
         get_path(P, M, self.ix, self.iy, x_end, y_end)
-        path_to_mat(P, path_Mat, w, h)
-        return M
-    def path_to_mat(P, M, w, h):
-        for i in range(len(P)):
-            M[P[i][1]][P[i][0]] = P[i][2]
+        return P
     def get_path(A, M, x, y, x_end, y_end):
         A.append((x, y, M[y][x]))
         if M[y][x] == 1:

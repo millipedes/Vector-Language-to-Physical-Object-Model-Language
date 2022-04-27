@@ -4,6 +4,8 @@ class Room:
     def __init__(self, *args, **kwargs):
         if  'room_data' in kwargs:
             self.__room_data = room_data
+        elif 'init_data' in kwargs and kwargs.get('init_data') == True:
+            self.__room_data = room_data()
         else:
             self.__room_data = None
         if 'left' in kwargs:
@@ -60,3 +62,5 @@ class Room:
         return self.__y
     def set_y(self, y):
         self.__y = y
+    def init_block(self):
+        return self.__room_data.edges_off()
