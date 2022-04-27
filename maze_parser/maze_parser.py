@@ -35,6 +35,8 @@ def dual_parse(parent, current, child):
             return "b"
         elif current == 3 and child == 4:
             return "c"
+        elif current == 3 and child == 7:
+            return "a"
         elif current == 4:
             return "c"
         elif current == 7:
