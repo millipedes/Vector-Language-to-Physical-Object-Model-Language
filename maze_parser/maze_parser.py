@@ -1,44 +1,57 @@
 def dual_parse(parent, current, child):
+    print("parent ", parent, " current ", current, " child ", child, sep='')
     if   parent == 1:
         if   current == 1 and child == 1:
             return "b"
         elif current == 1 and child == 2:
-            return "f"
+            return "b"
         elif current == 1 and child == 4:
-            return "d"
-        if current == 2:
+            return "b"
+        elif current == 2:
             return "f"
-        if current == 4:
+        elif current == 4:
             return "d"
+        elif current == 5:
+            return "b"
     elif parent == 2:
         if current == 1:
             return "c"
         elif current == 2 and child == 2:
             return "a"
         elif current == 2 and child == 1:
-            return "c"
+            return "a"
         elif current == 2 and child == 3:
-            return "d"
+            return "a"
         elif current == 3:
             return "d"
     elif parent == 3:
         if current == 1:
             return "g"
-        elif current == 3:
+        if current == 2:
+            return "g"
+        elif current == 3 and child == 3:
             return "b"
+        elif current == 3 and child == 2:
+            return "b"
+        elif current == 3 and child == 4:
+            return "c"
         elif current == 4:
             return "c"
+        elif current == 7:
+            return "a"
     elif parent == 4:
         if current == 2:
             return "g"
         elif current == 3:
             return "f"
         elif current == 4 and child == 4:
-            return "b"
+            return "a"
         elif current == 4 and child == 1:
             return "g"
         elif current == 4 and child == 3:
-            return "f"
+            return "a"
+        elif current == 8:
+            return "a"
 
 # def get_mat_parent(M, x, y, x_start,  y_start):
 #     x_prev = 0
